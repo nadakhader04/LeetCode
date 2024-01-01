@@ -1,0 +1,31 @@
+// https://leetcode.com/problems/merge-intervals/description/
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+     	int c = 1;
+         sort(intervals.begin(),intervals.end());
+	stack<pair<int, int>>s;
+	s.push(make_pair(intervals[0][0], intervals[0][1]));
+	for (int i = 1;i < intervals.size();i++) {
+		if (intervals[i][0] <= s.top().second && intervals[i][1] >= s.top().second) {
+			s.top().second = intervals[i][1];
+		}
+		else  if (intervals[i][0] > s.top().second) {
+			s.push(make_pair(intervals[i][0], intervals[i][1]));
+			c++;
+		}
+	}
+	
+	int i = 0;
+	vector<int>b(2);
+	vector<vector<int>>a(c);
+	while (!s.empty()) {
+		b[0] = s.top().first; b[1] = s.top().second ;
+		s.pop();
+		a[c-1-i] = b;
+		i++;
+	}
+	return a;
+    }
+};
