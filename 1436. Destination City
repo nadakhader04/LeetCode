@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/destination-city/description/
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        int i = 0;
+	string s;
+	while (i != paths.size()) {
+
+		s = paths[i][0];
+
+		for (int j = 0;j < paths.size();j++) {
+			if (s == paths[j][1]) {
+				s = "0";
+				paths[j][1] = "0";
+			}
+		}
+		i++;
+	}
+	for (int j = 0;j < paths.size();j++)
+		if (paths[j][1] != "0")
+			return paths[j][1];
+    return "-1";
+    }
+};
