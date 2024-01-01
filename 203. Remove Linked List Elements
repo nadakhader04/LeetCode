@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/remove-linked-list-elements/description/
+
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
         ListNode nexto = head, curr, nodo = new ListNode(0);
