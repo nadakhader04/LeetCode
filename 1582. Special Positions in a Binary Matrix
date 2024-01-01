@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/special-positions-in-a-binary-matrix/description/
+
+class Solution {
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+        int i=0,indI=0,indJ=0,c=0,count=0;
+        int m = mat.size(),n = mat[0].size();
+        while(i != m){
+            c=0;indI=0;indJ=0;
+
+            for(int j=0;j<n;j++)
+                if(mat[i][j]){
+                    c++;
+                    indJ=j; indI=i;
+                }
+            if(c==1){
+                for(int j=0;j<m;j++)
+                if(j!=indI && mat[j][indJ]) c++;
+            }         
+            if(c==1) count+=c; 
+            
+            i++;
+        }
+        return count;
+    }
+};
