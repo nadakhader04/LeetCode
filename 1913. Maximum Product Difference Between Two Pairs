@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/maximum-product-difference-between-two-pairs/description/
+
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+       int MAX = INT_MIN, MAX1 = INT_MIN, MIN = INT_MAX, MIN1 = INT_MAX;
+	for (int i = 0;i < nums.size();i++) {
+		if (MAX < nums[i]) {
+			MAX1 = MAX;
+			MAX = nums[i];
+		}
+		else if (MAX1 < nums[i]) {
+			MAX1 = nums[i];
+		}
+
+		if (MIN > nums[i]) {
+			MIN1 = MIN;
+			MIN = nums[i];
+		}
+		else if (MIN1 > nums[i])
+			MIN1 = nums[i];
+	}
+	return (MAX1 * MAX) - (MIN1 * MIN);
+    }
+};
