@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/description/?envType=daily-question&envId=2024-01-02
+
+class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+       List<List<Integer>> ar = new ArrayList<>();
+        int frq[] = new int[201];
+        
+        int MAX = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+             frq[nums[i]]++;    
+             MAX = Math.max(MAX, frq[nums[i]]);
+        }
+        while(MAX-- != 0){
+            ArrayList<Integer> e = new ArrayList<>();
+            for (int i = 0; i < frq.length; i++) {
+                if(frq[i] != 0){
+                    e.add(i);
+                    frq[i]--;
+                }
+            }
+            ar.add(e);
+        }
+        return ar;
+    } 
+}
