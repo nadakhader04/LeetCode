@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/number-of-laser-beams-in-a-bank/description/?envType=daily-question&envId=2024-01-03
+
+class Solution {
+    public int numberOfBeams(String[] bank) {
+         int c = 0, res = 0,ans = 0;
+         for(String str : bank){
+            c=0;
+            for(int j=0;j<str.length();j++)
+                if(str.charAt(j) == '1') c++;
+             
+            if(c!=0){
+                ans += c*res;
+                res = c;
+            }
+         }
+         
+         return ans;
+    }
+}
