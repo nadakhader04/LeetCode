@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/description/?envType=daily-question&envId=2024-01-04
+
+class Solution {
+    public int minOperations(int[] nums) {
+        Map<Integer,Integer> mp = new HashMap<>();
+        for (int element : nums) {
+            mp.put(element, mp.getOrDefault(element, 0)+ 1);            
+        }
+        int res = 0;
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {            
+            if(entry.getValue() % 3  == 0){
+                res += (entry.getValue()/3);
+            }
+            else{
+                while(entry.getValue() > 4){
+                    entry.setValue(entry.getValue()-3);
+                    res++;
+                }
+                if(entry.getValue()%2 == 0)
+                  res += entry.getValue()/2;
+                
+                else return -1;
+            }
+        }
+        return res;
+    }
+}
