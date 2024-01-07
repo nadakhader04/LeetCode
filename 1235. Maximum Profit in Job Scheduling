@@ -1,0 +1,47 @@
+class Solution {
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        int size = startTime.length;
+        Myobject arr[] = new Myobject[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = new Myobject(startTime[i], endTime[i], profit[i]);
+        }    
+     
+         Arrays.sort(arr, (a, b) -> Integer.compare(a.end, b.end));
+         
+         int dp[] = new int[size+1];
+           for (int i = 0; i < size; i++) {
+             int search = arr[i].start;
+
+             int Idx = binarySearch(arr, search, i);  
+             dp[i + 1] = Math.max(dp[i], dp[Idx] + arr[i].provit);
+         }
+         
+         return dp[size];
+    }
+
+     int binarySearch(Myobject[] arr, int target, int i) {
+        int left = 0;
+        int right =  i;
+        
+        while (left < right) {
+            int mid = (left + right) / 2;
+            
+            if (arr[mid].end <= target) 
+                left = mid + 1; 
+             else 
+                right = mid;
+        }
+        return left;
+    }
+}
+class Myobject {
+    int end;
+    int start ;
+    int provit;
+    public Myobject(int e1, int e2, int e3) {
+        this.start = e1;
+        this.end = e2;
+        this.provit = e3;
+    }
+       
+}
