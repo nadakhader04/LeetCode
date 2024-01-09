@@ -1,0 +1,20 @@
+class Solution {
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+      List arrRoot1 = new ArrayList<Integer>();
+      List arrRoot2 = new ArrayList<Integer>();
+
+       isLeaf(root1,arrRoot1);
+       isLeaf(root2,arrRoot2);
+     return arrRoot1.equals(arrRoot2);
+    }
+    void isLeaf(TreeNode root, List<Integer>arrRoot){
+       if(root == null) return ;
+       if(root.left == null && root.right == null)
+           arrRoot.add(root.val);
+       else{
+           isLeaf(root.left,arrRoot);
+           isLeaf(root.right,arrRoot);
+       }
+    
+    }
+}
