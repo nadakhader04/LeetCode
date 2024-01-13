@@ -1,0 +1,27 @@
+class Solution {
+    public int minSteps(String s, String t) {
+        Map<Character,Integer> mp1 = new HashMap<>();
+        Map<Character,Integer> mp2 = new HashMap<>();
+           
+            for(int i = 0; i< s.length(); i++){
+               mp1.put(s.charAt(i), mp1.getOrDefault(s.charAt(i),0) +1);
+               mp2.put(t.charAt(i), mp2.getOrDefault(t.charAt(i),0) +1);
+           }
+            
+            int ans = 0;
+            
+            for (Map.Entry<Character, Integer> entry : mp1.entrySet()) {
+               Character key = entry.getKey();
+               Integer value = entry.getValue();
+               Integer get = mp2.get(key);
+                if(get == null){
+                    ans += value;
+                }
+                else if(get < value){
+                    ans += value - get;
+                }
+           }
+           
+            return ans;
+    }
+}
