@@ -1,0 +1,34 @@
+class RandomizedSet {
+    HashSet<Integer> st;
+    Random r;
+    
+    public RandomizedSet() {
+        this.st = new HashSet<>();
+        r = new Random();
+    }
+    
+    public boolean insert(int val) {
+        if(st.contains(val))  return false;
+        st.add(val);
+        return true;
+    }
+    
+    public boolean remove(int val) {
+        if(!st.contains(val)) return false;
+        st.remove(val);
+        return true;
+    }
+
+    public int getRandom() {
+        Integer[] arr = st.toArray(new Integer[st.size()]);
+        return arr[r.nextInt(st.size())];
+    }
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
