@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+      int MAX = INT_MIN;
+    for (int i = 0;i < matches.size();i++) {
+        MAX = max(max(matches[i][0], matches[i][1]), MAX);
+    }
+    vector<int>f1(MAX+1), f2 = f1, winner, loser;
+    vector<vector<int>>res;
+    
+    for (int i = 0;i < matches.size();i++) {
+        f1[matches[i][0]]++;
+        f2[matches[i][1]]++;
+    }
+
+    for (int i = 0;i <= MAX;i++) {
+        if (f1[i] && f2[i] == 0) winner.push_back(i);
+        else if (f2[i] == 1) loser.push_back(i);
+    }
+    res.push_back(winner);
+    res.push_back(loser);
+
+    return res;
+    }
+};
