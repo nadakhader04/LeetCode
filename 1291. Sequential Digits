@@ -1,0 +1,44 @@
+<<--- The first solution is without using Recursion--->>
+
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        vector<int>v;
+        int s = 0, i = 1, digt = digit(low), n;
+        while (s < high) {
+            s = 0;n = digt;
+            int j = i;
+            while (n--) s = s * 10 + j++;
+            if (s <= high && s >= low)   v.push_back(s);
+            if (s % 10 == 9) {
+                digt++;
+                i = 0;
+            }
+            i++;
+    }
+    return v;
+}
+int digit(int nums) {
+    int count = 0;
+    while (nums) {  nums /= 10; count++;  }
+    return count;
+}
+};
+
+<<--- The second solution is to use Recursion--->>
+
+class Solution {
+public:
+vector<int>v;
+    vector<int> sequentialDigits(int low, int high) {
+        for (int i = 1; i <= 9; i++) 
+            dfs(low, high, i, 0);
+        sort(v.begin(), v.end());
+        return v;
+}
+void dfs(int low, int high, int i, int num) {
+        if (num <= high && num >= low)  v.push_back(num);
+        if (i > 9 || num > high) return;
+        dfs(low, high, i + 1, num * 10 + i);
+}
+};
