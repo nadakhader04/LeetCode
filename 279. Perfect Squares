@@ -1,0 +1,17 @@
+	class Solution {
+    public int numSquares(int n) {
+        int val, ans;
+        int dp[] = new int [n+1];
+        
+        dp[0]=0;
+        for(int i=1;i<= n;i++){
+            val = Integer.MAX_VALUE; ans = Integer.MAX_VALUE;
+            for(int j=1;j*j<=i;j++){
+                val = dp[i-j*j] + 1;
+                ans = Math.min(val,ans);
+            }
+            dp[i]=ans;
+        }
+        return dp[n];
+    }
+}
