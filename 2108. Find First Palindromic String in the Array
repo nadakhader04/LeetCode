@@ -1,3 +1,14 @@
+Complexity
+Time complexity :
+O(n.m)
+(n is the number of words in the input array and m is the maximum length of a word)
+
+Space complexity:
+O(1)
+
+------------------------------------------------------------------------------------------------
+
+
 class Solution {
 public:
     string firstPalindrome(vector<string>& words) {
