@@ -1,0 +1,33 @@
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head.next == null) return null;
+
+        int i = 1;
+        ListNode curr = Reverce(head),c = head;
+        head = curr;
+        if(n == 1) { head = curr = curr.next;}
+        else{
+                while(curr != null){
+                    
+                    if(i+1 == n){
+                        if(curr.next == null) curr.next = curr.next;
+                        else curr.next = curr.next.next;
+                        break;
+                    }
+                    curr = curr.next;
+                    i++;
+                }
+        }
+        return Reverce(head);
+    }
+    public ListNode Reverce(ListNode head){
+        ListNode pre = null, nexto, c;
+        while(head != null){
+            nexto = head.next;
+            head.next = pre;
+            pre = head;
+            head = nexto;
+        }        
+        return pre;
+    }
+}
