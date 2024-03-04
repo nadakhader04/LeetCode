@@ -1,0 +1,22 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        if(isPalindromic(s)) return s;
+        String str = s.substring(0, 1);
+        int ans = 1;
+        for (int i = 0; i < s.length(); i++) 
+            for (int j = i + 1; j <= s.length(); j++) {
+                if(j - i > ans && isPalindromic(s.substring(i, j))){
+                    ans = j - i;
+                    str = s.substring(i, j);
+                }
+            }
+        return str;
+    }     
+    private static boolean isPalindromic(String string) {
+        for (int i = 0, j = string.length()-1; i<j ;i++,j--) {
+            if(string.charAt(i) != string.charAt(j)) 
+                return false;
+        }
+        return true;
+    }
+}
