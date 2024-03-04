@@ -1,0 +1,13 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        if(nums.length <= 1) return true;
+        int curr = nums.length-1, i = nums.length - 1;
+        while(i >= 0){
+            if(nums[i] + i >= curr){
+                curr = i;
+            }
+            i--;
+        }
+        return curr == 0;
+    }
+}
