@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+    	vector<int> f(101);
+        for(int i=0; i<nums.size(); i++) f[nums[i]]++;
+        
+        int sum = 0, num = *max_element(f.begin(), f.end());
+        for(int i=0;i<f.size(); i++)
+            if(f[i] >= num)
+                sum+=num;
+           
+        return sum;
+    }
+};
