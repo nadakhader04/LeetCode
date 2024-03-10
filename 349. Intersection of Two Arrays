@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> inter;
+        vector<int>::iterator it;
+        int i = 0;
+
+        while (i < nums2.size()) {
+            it = find(nums1.begin(), nums1.end(), nums2[i]);
+            if (it != nums1.end())
+                inter.push_back(nums2[i]);
+
+            i++;
+        }
+
+        set<int> set1(inter.begin(), inter.end());
+        vector<int> result(set1.begin(), set1.end());
+
+        return result;
+    }
+};
