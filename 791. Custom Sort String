@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+       	map<char, int>mp;
+	for (char c : s) {
+		mp[c]++;
+	}
+	string str = "";
+	for (auto &c : order) {
+		if (mp.find(c) != mp.end()) {// found
+			str.append(mp[c],c);
+			mp.erase(c);
+		}
+	}
+
+	for (auto& p : mp) {
+		str.append(p.second, p.first);
+	}
+	return str;
+    }
+};
