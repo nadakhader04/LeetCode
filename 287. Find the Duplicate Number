@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        vector<int>f(100001,0);
+        for(int i=0;i<nums.size(); ++i)
+            f[nums[i]]++;
+
+        for(int i=0;i<f.size(); i++)
+            if(f[i] > 1)
+                return i;
+        return -1;
+    }
+};
